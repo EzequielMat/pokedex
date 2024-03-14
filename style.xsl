@@ -65,11 +65,23 @@
                     <div class="col-6 mt-2">
                         <p class="text-white fs-4"><xsl:value-of select="species"/></p>
 						<xsl:for-each select="baseStats">
-                        <h6>HP: <xsl:value-of select="HP"/></h6>
-                        <h6>ATK: <xsl:value-of select="ATK"/></h6>
-                        <h6>DEF: <xsl:value-of select="DEF"/></h6>
-                        <h6>SPD: <xsl:value-of select="SPD"/></h6>
-                        <h6>SATK: <xsl:value-of select="SATK"/></h6>
+                        <xsl:choose>
+                            <xsl:when test="SPD &gt; 100">
+                             <h6 >HP: <xsl:value-of select="HP"/></h6>
+                             <h6>ATK: <xsl:value-of select="ATK"/></h6>
+                             <h6>DEF: <xsl:value-of select="DEF"/></h6>
+                             <h6 >SPD: <span class="text-danger fw-bold"><xsl:value-of select="SPD"/></span></h6>
+                             <h6>SATK: <xsl:value-of select="SATK"/></h6>
+                            </xsl:when>
+                            <xsl:otherwise>
+                            <h6>HP: <xsl:value-of select="HP"/></h6>
+                             <h6>ATK: <xsl:value-of select="ATK"/></h6>
+                             <h6>DEF: <xsl:value-of select="DEF"/></h6>
+                             <h6>SPD: <xsl:value-of select="SPD"/></h6>
+                             <h6>SATK: <xsl:value-of select="SATK"/></h6>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    
                         
                         <div class="row mt-3">
                         <xsl:for-each select="../types/type">
